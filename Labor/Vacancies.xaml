@@ -1,0 +1,16 @@
+﻿<Window x:Class="Labor.Vacancies"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labor"
+        mc:Ignorable="d"
+        Title="Vacancies" Height="316.593" Width="319.912" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:Birja_TrudaDataSet x:Key="birja_TrudaDataSet"/>
+        <CollectionViewSource x:Key="vacansiesViewSource" Source="{Binding Vacansies, Source={StaticResource birja_TrudaDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource vacansiesViewSource}">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="0,1,-1,0" VerticalAlignment="Top" Height="284" Width="313" HeadersVisibility="None" RowHeight="100" />
+    </Grid>
+</Window>

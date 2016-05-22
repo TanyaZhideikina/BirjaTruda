@@ -1,0 +1,49 @@
+﻿<Window x:Class="Labor.WorkSpace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labor"
+        mc:Ignorable="d"
+        KeyDown="Key_Down"
+        xmlns:cl="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+        Title="Біржа труда HELPER" Loaded="Window_Loaded" >
+    <Window.Resources>
+        <local:Birja_TrudaDataSet x:Key="birja_TrudaDataSet"/>
+        <CollectionViewSource x:Key="aplicantsViewSource" Source="{Binding Aplicants, Source={StaticResource birja_TrudaDataSet}}"/>
+    </Window.Resources>
+    <Grid Margin="4,0,0,4" KeyDown="Key_Down" DataContext="{StaticResource aplicantsViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="727*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
+        <cl:Frame x:Name="mainFrame" KeyDown="mainFrame_KeyDown" Margin="-21,0,21,0"/>
+        <Menu Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <MenuItem Header="Оформление">
+                <MenuItem Header="Шрифт формы" Click="ChangeShrift"></MenuItem>
+                <MenuItem Header="Фон формы" Click="ChangeBackgroundColor"></MenuItem>
+                <MenuItem Header="Фон элементов формы" Click="ChangeElementsColor"></MenuItem>
+                <MenuItem Header="Цвет текста" Click="ChangeShriftColor"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="О нас" Click="AboutUs_click"></MenuItem>
+            <MenuItem Header="Звит" Click="AboutUs_click">
+                <MenuItem Header="Word" Click="Open_Word"></MenuItem>
+                <MenuItem Header="Excel" Click="Open_Excel"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Label x:Name="Labor" HorizontalAlignment="Center" FontFamily="Trebuchet MS" FontSize="30" Height="50" Margin="284,42,243,408" Width="200" Foreground="Black" FontWeight="Bold">
+            Биржа труда
+        </Label>
+
+        <Button x:Name="EnterVacanciesBase" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" FontFamily="Trebuchet MS" FontSize="16" Height="74" Margin="116,328,487,98" Click="EnterVacanciesBaseWorkSpace">
+            <TextBlock Text="Вход в базу вакансий" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+        </Button>
+        <Button x:Name="EnterClientBase"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" FontFamily="Trebuchet MS" FontSize="16" Height="74" Margin="516,328,87,98" Click="EnterClientBaseWorkSpace">
+            <TextBlock Text="Вход в клиентскую базу" TextWrapping="Wrap" TextAlignment="Center" Width="114"></TextBlock>
+        </Button>
+        <Label x:Name="CapsLockLabel" Content="Нажата клавиша Caps Lock" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="10,0,0,10" Visibility="Hidden" />
+        <Label x:Name="NumLockLabel" Content="Нажата клавиша Num lock" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,10,10" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="CapsLock" KeyDown="Key_Down" Margin="256,249,187,221"></TextBlock>
+    </Grid>
+</Window>
